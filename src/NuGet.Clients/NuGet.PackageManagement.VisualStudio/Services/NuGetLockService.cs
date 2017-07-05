@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -26,8 +26,10 @@ namespace NuGet.PackageManagement.VisualStudio
         {
             if (_lockCount.Value == 0)
             {
-                _lockCount.Value++;
                 await _semaphore.WaitAsync(token);
+
+                // Once this thread acquired the lock then increment lockCount
+                _lockCount.Value++;
 
                 try
                 {
