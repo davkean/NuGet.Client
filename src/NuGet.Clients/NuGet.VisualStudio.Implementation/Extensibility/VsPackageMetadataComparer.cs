@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -32,8 +32,8 @@ namespace NuGet.VisualStudio
                 return 0;
             }
 
-            return obj.Id.ToUpperInvariant().GetHashCode() * 397
-                   ^ obj.VersionString.ToUpperInvariant().GetHashCode();
+            return StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Id) * 397
+                   ^ StringComparer.OrdinalIgnoreCase.GetHashCode(obj.VersionString);
         }
     }
 }
